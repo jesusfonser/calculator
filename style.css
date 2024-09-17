@@ -4,13 +4,28 @@ body{
 }
 
 #calculadora {
-    height: 400px;
+    height: 310px;
     width: 300px;
     background-color: skyblue;
+    display: flex;
+    flex-direction: column;
 }
 
 #pantalla {
     background-color: grey;
     height: 50px;
     margin: 10px;
+}
+
+#notscreen {
+    flex-grow: 1;
+    display: flex;
+}
+
+#boton-numeros {
+    flex: 2 0 0;
+}
+
+#boton-signos {
+    flex: 1 0 0;
 }
