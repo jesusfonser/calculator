@@ -1,0 +1,16 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+
+#calculadora {
+    height: 400px;
+    width: 300px;
+    background-color: skyblue;
+}
+
+#pantalla {
+    background-color: grey;
+    height: 50px;
+    margin: 10px;
+}
