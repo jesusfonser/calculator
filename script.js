@@ -71,11 +71,30 @@ function ejecutaOperacion(){
     }
 }
 
+
+
 let allBNum = document.querySelectorAll(".numero");
 for (let i = 0; i < allBNum.length; i++){
     allBNum[i].addEventListener("click", () => escribirNum(allBNum[i]))
 }
 
-let allBSign = document.querySelectorAll(".")
+let allBSign = document.querySelectorAll(".bsigno")
+for (let i = 0; i < allBSign.length; i++){
+    allBSign[i].addEventListener("click", () => comienzaOperacion(allBSign[i]))
+}
 
+let bPunto = document.querySelector(".punto")
+bPunto.addEventListener("click", () => {
+    if (!numerosEscritos.textContent.includes(".")){
+     numerosEscritos.textContent = numerosEscritos.textContent + "."
+    }})
 
+let bBorrar = document.querySelector(".borrar")
+bBorrar.addEventListener("click", () =>{
+    numerosEscritos.textContent = '0'
+    operacion.signo = undefined;
+    operacion.primero = undefined;
+})
+
+let bIgual = document.querySelector(".igual")
+bIgual.addEventListener("click", () => ejecutaOperacion())
