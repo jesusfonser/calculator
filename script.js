@@ -2,6 +2,7 @@ let num1
 let num2
 let sign
 
+
 function add(a, b){
     return a + b
 }
@@ -34,3 +35,12 @@ function operate (operator, num1, num2){
             break;
     }
 }
+
+
+
+
+/*let allBNum = document.querySelectorAll(".numero");
+for (let i = 0; i < allBNum.length; i++){
+    allBNum[i].addEventListener("click", () => console.log("Buenas"))
+}
+*/
