@@ -58,6 +58,7 @@ button {
     gap: 8px;
 }
 
-.bsigno {
+.bsigno,
+.igual {
     width: 50px;
 }
