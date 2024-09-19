@@ -38,29 +38,31 @@ function operate (operator, num1, num2){
     }
 }
 
+
+
 function escribirNum(a){
     if (numerosEscritos.textContent.length == 33) numerosEscritos.textContent = numerosEscritos.textContent.slice(1)
     numerosEscritos.textContent = numerosEscritos.textContent + a.textContent
-    console.log("que tal")
 }
 
 function comienzaOperacion(a){
     operacion.primero = numerosEscritos.textContent
     operacion.signo = a.textContent
-    numerosEscritos.textContent = '';
+    numerosEscritos.textContent = '0';
 }
 
 function ejecutaOperacion(){
     operacion.primero.includes(".") ? num1 = parseFloat(operacion.primero) : num1 = parseInt(operacion.primero)
     numerosEscritos.textContent.includes(".") ? num2 = parseFloat(numerosEscritos.textContent) : num2 = parseInt(numerosEscritos.textContent)
     resultado = Math.round(operate(operacion.signo, num1, num2))
-    numerosEscritos.textContent = resulado.toString().slice(0, 33)
+    numerosEscritos.textContent = resultado.toString().slice(0, 32)
 }
 
 let allBNum = document.querySelectorAll(".numero");
 for (let i = 0; i < allBNum.length; i++){
     allBNum[i].addEventListener("click", () => escribirNum(allBNum[i]))
 }
+
 
 
 
