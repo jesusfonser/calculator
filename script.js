@@ -57,10 +57,14 @@ function ejecutaOperacion(){
         numerosEscritos.textContent.includes(".") ? num2 = parseFloat(numerosEscritos.textContent) : num2 = parseInt(numerosEscritos.textContent)
         resultado = Math.round(operate(operacion.signo, num1, num2))
         numerosEscritos.textContent = resultado.toString().slice(0, 32)
+        operacion.signo = undefined;
+        operacion.primero = undefined;
     }
     else{
         alert("¡Error!")
         numerosEscritos.textContent = '0'
+        operacion.signo = undefined;
+        operacion.primero = undefined;
     }
 }
 
