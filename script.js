@@ -41,8 +41,11 @@ function operate (operator, num1, num2){
 
 
 function escribirNum(a){
-    if (numerosEscritos.textContent.length == 33) numerosEscritos.textContent = numerosEscritos.textContent.slice(1)
-    numerosEscritos.textContent = numerosEscritos.textContent + a.textContent
+    if (numerosEscritos.textContent === "0") numerosEscritos.textContent = a.textContent
+    else{
+        if (numerosEscritos.textContent.length == 33) numerosEscritos.textContent = numerosEscritos.textContent.slice(1)
+        numerosEscritos.textContent = numerosEscritos.textContent + a.textContent
+    }
 }
 
 function comienzaOperacion(a){
@@ -56,7 +59,7 @@ function ejecutaOperacion(){
         operacion.primero.includes(".") ? num1 = parseFloat(operacion.primero) : num1 = parseInt(operacion.primero)
         numerosEscritos.textContent.includes(".") ? num2 = parseFloat(numerosEscritos.textContent) : num2 = parseInt(numerosEscritos.textContent)
         resultado = Math.round(operate(operacion.signo, num1, num2))
-        numerosEscritos.textContent = resultado.toString().slice(0, 32)
+        numerosEscritos.textContent = resultado.toString().slice(0, 33)
         operacion.signo = undefined;
         operacion.primero = undefined;
     }
