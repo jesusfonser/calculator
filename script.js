@@ -2,6 +2,7 @@ let num1
 let num2
 let sign
 let resultado
+let permisoBorrado
 const operacion = {}
 let numerosEscritos = document.querySelector("#numeros")
 
@@ -18,6 +19,12 @@ function multiply(a, b){
 }
 
 function divide(a, b){
+    if (b === 0){
+        operacion.signo = undefined
+        operacion.primero = undefined
+        numerosEscritos.textContent = '0'
+        return alert("Buen intento")
+    }
     return a / b
 }
 
@@ -38,10 +45,18 @@ function operate (operator, num1, num2){
     }
 }
 
-
-
 function escribirNum(a){
-    if (numerosEscritos.textContent === "0") numerosEscritos.textContent = a.textContent
+    if (numerosEscritos.textContent === "0" || permisoBorrado){
+        if (a.textContent === "."){
+            numerosEscritos.textContent = "0."
+            permisoBorrado = false;
+        }
+        else{
+            numerosEscritos.textContent = a.textContent
+            permisoBorrado = false;
+        }
+        
+    } 
     else{
         if (numerosEscritos.textContent.length == 33) numerosEscritos.textContent = numerosEscritos.textContent.slice(1)
         numerosEscritos.textContent = numerosEscritos.textContent + a.textContent
@@ -51,27 +66,27 @@ function escribirNum(a){
 function comienzaOperacion(a){
     operacion.primero = numerosEscritos.textContent
     operacion.signo = a.textContent
-    numerosEscritos.textContent = '0';
+    permisoBorrado = true;
 }
 
-function ejecutaOperacion(){
+function ejecutaOperacion(a){
     if (operacion.primero && operacion.signo){
         operacion.primero.includes(".") ? num1 = parseFloat(operacion.primero) : num1 = parseInt(operacion.primero)
         numerosEscritos.textContent.includes(".") ? num2 = parseFloat(numerosEscritos.textContent) : num2 = parseInt(numerosEscritos.textContent)
-        resultado = Math.round(operate(operacion.signo, num1, num2))
+        resultado = operate(operacion.signo, num1, num2)
         numerosEscritos.textContent = resultado.toString().slice(0, 33)
-        operacion.signo = undefined;
-        operacion.primero = undefined;
+        operacion.primero = numerosEscritos.textContent;
+        permisoBorrado = true;
     }
     else{
-        alert("¡Error!")
-        numerosEscritos.textContent = '0'
-        operacion.signo = undefined;
-        operacion.primero = undefined;
+        if (a.textContent === "="){
+            alert("¡Error!")
+            numerosEscritos.textContent = '0'
+            operacion.signo = undefined;
+            operacion.primero = undefined;
+        } 
     }
 }
-
-
 
 let allBNum = document.querySelectorAll(".numero");
 for (let i = 0; i < allBNum.length; i++){
@@ -80,8 +95,11 @@ for (let i = 0; i < allBNum.length; i++){
 
 let allBSign = document.querySelectorAll(".bsigno")
 for (let i = 0; i < allBSign.length; i++){
-    allBSign[i].addEventListener("click", () => comienzaOperacion(allBSign[i]))
-}
+    allBSign[i].addEventListener("click", () => {
+        ejecutaOperacion(allBSign[i])
+        comienzaOperacion(allBSign[i])
+    })}
+
 
 let bPunto = document.querySelector(".punto")
 bPunto.addEventListener("click", () => {
@@ -97,4 +115,8 @@ bBorrar.addEventListener("click", () =>{
 })
 
 let bIgual = document.querySelector(".igual")
-bIgual.addEventListener("click", () => ejecutaOperacion())
+bIgual.addEventListener("click", () => {
+    ejecutaOperacion(bIgual)
+    operacion.signo = undefined
+    operacion.primero = undefined
+})
