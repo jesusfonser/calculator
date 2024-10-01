@@ -5,6 +5,7 @@ let resultado
 let permisoBorrado
 const operacion = {}
 let numerosEscritos = document.querySelector("#numeros")
+let losSigno = ["+", "-", "*", "/", "="]
 
 function add(a, b){
     return a + b
@@ -103,6 +104,23 @@ function ejecutaOperacion(a){
     }
 }
 
+function backspace(){
+    
+    if (permisoBorrado){
+            numerosEscritos.textContent = '0';
+            permisoBorrado = false;
+        }
+    
+    else {
+            numerosEscritos.textContent = numerosEscritos.textContent.slice(0, numerosEscritos.textContent.length - 1)
+        }
+    
+    if (numerosEscritos.textContent === ''){
+            numerosEscritos.textContent = 0
+        }
+    
+}
+
 let allBNum = document.querySelectorAll(".numero");
 for (let i = 0; i < allBNum.length; i++){
     allBNum[i].addEventListener("click", () => escribirNum(allBNum[i]))
@@ -137,21 +155,16 @@ bIgual.addEventListener("click", () => {
 })
 
 let bBack = document.querySelector(".back")
-bBack.addEventListener("click", () => {
-    if (permisoBorrado){
-        numerosEscritos.textContent = '0';
-        permisoBorrado = false;
+bBack.addEventListener("click", () => backspace())
+
+document.addEventListener("keyup", (tecla) => {
+    console.log(tecla.key)
+    if (parseInt(tecla.key)) escribirNum(tecla)
+    else if(losSigno.includes(tecla.key)) {
+        ejecutaOperacion(tecla)
+        comienzaOperacion(tecla)
+        }
+    else if(tecla.key === "Backspace"){
+        backspace()
     }
-
-    else {
-        numerosEscritos.textContent = numerosEscritos.textContent.slice(0, numerosEscritos.textContent.length - 1)
-    }
-
-    if (numerosEscritos.textContent === ''){
-        numerosEscritos.textContent = 0
-    }
-} )
-
-numerosEscritos.addEventListener("keyup", (tecla) => {
-
 })
