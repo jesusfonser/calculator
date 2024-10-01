@@ -46,35 +46,45 @@ function operate (operator, num1, num2){
 }
 
 function escribirNum(a){
+    let daNum
+    a.key ? daNum = a.key : daNum = a.textContent
+
     if (numerosEscritos.textContent === "0" || permisoBorrado){
-        if (a.textContent === "."){
+        if (daNum === "."){
             numerosEscritos.textContent = "0."
             permisoBorrado = false;
         }
         else{
-            numerosEscritos.textContent = a.textContent
+            numerosEscritos.textContent = daNum
             permisoBorrado = false;
         }
         
     } 
     else{
         if (numerosEscritos.textContent.length == 12) numerosEscritos.textContent = numerosEscritos.textContent.slice(1)
-        numerosEscritos.textContent = numerosEscritos.textContent + a.textContent
+        numerosEscritos.textContent = numerosEscritos.textContent + daNum
     }
 }
 
 function comienzaOperacion(a){
+    let daSign
+    a.key ? daSign = a.key : daSign = a.textContent
+
     operacion.primero = numerosEscritos.textContent
-    operacion.signo = a.textContent
+    operacion.signo = daSign
     permisoBorrado = true;
 }
 
 function ejecutaOperacion(a){
+
+    let daOdaSign
+    a.key ? daOdaSign = a.key : daOdaSign = a.textContent
+
     if (operacion.primero && operacion.signo){
         operacion.primero.includes(".") ? num1 = parseFloat(operacion.primero) : num1 = parseInt(operacion.primero)
         numerosEscritos.textContent.includes(".") ? num2 = parseFloat(numerosEscritos.textContent) : num2 = parseInt(numerosEscritos.textContent)
         resultado = operate(operacion.signo, num1, num2)
-        if (resultado > 999999999999){
+        if (resultado > 999999999999 || resultado < -999999999999){
             numerosEscritos.textContent = NaN
         }
         else {
@@ -84,7 +94,7 @@ function ejecutaOperacion(a){
         permisoBorrado = true;
     }
     else{
-        if (a.textContent === "="){
+        if (daOdaSign === "="){
             alert("¡Error!")
             numerosEscritos.textContent = '0'
             operacion.signo = undefined;
@@ -142,3 +152,6 @@ bBack.addEventListener("click", () => {
     }
 } )
 
+numerosEscritos.addEventListener("keyup", (tecla) => {
+
+})

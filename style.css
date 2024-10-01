@@ -38,6 +38,7 @@ body{
 .back, .borrar {
     background-color: rgb(187, 1, 1);
     border-color: rgb(187, 1, 1);
+    width: 50px;
 }
 
 #notscreen {
