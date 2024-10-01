@@ -167,4 +167,8 @@ document.addEventListener("keyup", (tecla) => {
     else if(tecla.key === "Backspace"){
         backspace()
     }
-})
+    else if(tecla.key === "."){
+        if (!numerosEscritos.textContent.includes(".") || permisoBorrado){
+            escribirNum(tecla)
+        }}
+    })
