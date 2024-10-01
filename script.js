@@ -58,7 +58,7 @@ function escribirNum(a){
         
     } 
     else{
-        if (numerosEscritos.textContent.length == 33) numerosEscritos.textContent = numerosEscritos.textContent.slice(1)
+        if (numerosEscritos.textContent.length == 12) numerosEscritos.textContent = numerosEscritos.textContent.slice(1)
         numerosEscritos.textContent = numerosEscritos.textContent + a.textContent
     }
 }
@@ -74,7 +74,12 @@ function ejecutaOperacion(a){
         operacion.primero.includes(".") ? num1 = parseFloat(operacion.primero) : num1 = parseInt(operacion.primero)
         numerosEscritos.textContent.includes(".") ? num2 = parseFloat(numerosEscritos.textContent) : num2 = parseInt(numerosEscritos.textContent)
         resultado = operate(operacion.signo, num1, num2)
-        numerosEscritos.textContent = resultado.toString().slice(0, 33)
+        if (resultado > 999999999999){
+            numerosEscritos.textContent = NaN
+        }
+        else {
+            numerosEscritos.textContent = resultado.toString().slice(0, 12)
+        }
         operacion.primero = numerosEscritos.textContent;
         permisoBorrado = true;
     }
