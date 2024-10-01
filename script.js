@@ -108,8 +108,8 @@ for (let i = 0; i < allBSign.length; i++){
 
 let bPunto = document.querySelector(".punto")
 bPunto.addEventListener("click", () => {
-    if (!numerosEscritos.textContent.includes(".")){
-     numerosEscritos.textContent = numerosEscritos.textContent + "."
+    if (!numerosEscritos.textContent.includes(".") || permisoBorrado){
+        escribirNum(bPunto)
     }})
 
 let bBorrar = document.querySelector(".borrar")
@@ -141,3 +141,4 @@ bBack.addEventListener("click", () => {
         numerosEscritos.textContent = 0
     }
 } )
+
