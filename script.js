@@ -125,3 +125,19 @@ bIgual.addEventListener("click", () => {
     operacion.signo = undefined
     operacion.primero = undefined
 })
+
+let bBack = document.querySelector(".back")
+bBack.addEventListener("click", () => {
+    if (permisoBorrado){
+        numerosEscritos.textContent = '0';
+        permisoBorrado = false;
+    }
+
+    else {
+        numerosEscritos.textContent = numerosEscritos.textContent.slice(0, numerosEscritos.textContent.length - 1)
+    }
+
+    if (numerosEscritos.textContent === ''){
+        numerosEscritos.textContent = 0
+    }
+} )
